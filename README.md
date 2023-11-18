@@ -8,3 +8,6 @@ app.py - added CORS middle ware for intrgration of front-end and back-end
 
 Christon - 16/11
 app.py - added additional error handling for long input sentences
+
+Christon - 18/11
+app.py - added user input fucntion

@@ -11,6 +11,26 @@ CORS(app, resources={r"/translate": {"origins": "*"}})  # Adds CORS middle ware 
 model = BartForConditionalGeneration.from_pretrained("imchris/BART-creole-to-english")
 tokenizer = BartTokenizer.from_pretrained("imchris/BART-creole-to-english")
 
+def user_input(creole_sentence):
+    try:
+        # Get user input for the Creole sentence
+        creole_sentence = input()
+
+        # Check if the input is empty
+        if len(creole_sentence) == 0:
+            raise ValueError("Input is empty.")
+
+        # Check if the input is too long (more than 150 characters)
+        if len(creole_sentence) > 150:
+            raise ValueError("Input is too long.")
+        
+    except ValueError as error:
+        # Handle the specific ValueError and return an error message
+        return f"Error 001: {str(error)}, Check input sentence."
+
+    except Exception as error:
+        # return a error message for any other errors.
+        return "Error 001: Check input sentence."
 
 # Function to generate translations using the BART model
 def translate_creole(creole_text, max_length=128):
